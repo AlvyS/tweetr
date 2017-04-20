@@ -5,9 +5,21 @@
  */
 html {
   box-sizing: border-box;
+  font: 'Roboto Condensed', sans-serif;
 }
 *, *:before, *:after {
   box-sizing: inherit;
+}
+
+.container {
+  width: 450px;
+  margin: 0 auto;
+  background: white;
+  padding: 100px 10px 100px 10px;
+}
+
+.pLines {
+  padding: 80px
 }
 
 /*
