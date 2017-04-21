@@ -16,7 +16,7 @@
 4 verbose stack     at /home/vagrant/.nvm/versions/node/v6.9.5/lib/node_modules/npm/node_modules/graceful-fs/graceful-fs.js:78:16
 4 verbose stack     at tryToString (fs.js:455:3)
 4 verbose stack     at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:442:12)
-5 verbose cwd /vagrant/tweeter
+5 verbose cwd /vagrant/Tweeter
 6 error Linux 4.4.0-21-generic
 7 error argv "/home/vagrant/.nvm/versions/node/v6.9.5/bin/node" "/home/vagrant/.nvm/versions/node/v6.9.5/bin/npm" "run" "public"
 8 error node v6.9.5

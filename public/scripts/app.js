@@ -1,6 +1,106 @@
 $(document).ready(function () {
 
-//--------------------------- Template Database of Users ---------------------------------//
+//---------------------------------- Create tweet element/object and prep for render ---------------------------------------//
+function createTweetElement(tweet) {
+  // console.log(tweet);
+  let $avatar = $("<img/>", { src: tweet.user.avatars.small }).addClass("avatars");
+  let $name = $('<span/>', { text: tweet.user.name }).addClass("fullName");
+  let $handle = $('<handle>').text(tweet.user.handle).addClass("handle"); //this format also works.
+
+  let $flag = $('<i/>').addClass('fa fa-flag');
+  let $retweet = $('<i>').addClass('fa fa-retweet'); // <i> or <i/>
+  let $heart = $('<i/>').addClass('fa fa-heart');
+
+
+  let $content = $('<p/>', { text: tweet.content.text }).addClass("content");
+
+  let $age = $('<span/>', { text: tweet.created_at }).addClass("age");
+  let $header = $('<header/>')
+
+  let $footer = $('<footer/>')
+
+  let $icons = $('<div/>').addClass("icons");
+
+  let $article = $('<article/>').addClass('content-article');
+
+  let $section = $('<section/>');
+
+  $header.append($avatar, $name, $handle);
+  $icons.append($flag, $retweet, $heart);
+  $footer.append($age, $icons);
+  $article.append($header, $content, $footer);
+  // $section.append($article);
+    return $article;
+  // return $section;
+  // console.log($section);
+}
+
+
+//----------------------------------------------- Render Tweets ----------------------------------------------------//
+function renderTweets(tweets) {
+  for (let pastTweet of tweets) {
+    $('#old-tweets').prepend(createTweetElement(pastTweet));
+  }
+}
+// renderTweets();
+loadTweets();
+
+
+//----------------------------------- Submit new tweet, POST method, Ajax ------------------------------------------//
+$('.new-tweet form').on('submit', function(event) {
+  event.preventDefault();
+  // console.log('tweet button clicked, preventing default');
+  let text = $('.new-tweet textarea');
+  let tweetText = $(this).find('[name=text]').val();
+  // console.log("text is:", text);
+
+  if (tweetText === '') {
+    $('.too-short').slideDown(function() {
+    setTimeout(function() {
+      $('.too-short').slideUp();
+      }, 5000);
+    });
+    return;
+  }
+
+  if (tweetText.length > 140) {
+    $('.too-long').slideDown(function() {
+    setTimeout(function() {
+      $('.too-long').slideUp();
+      }, 5000);
+    });
+    return;
+  }
+
+  $.ajax({
+    method: 'POST',
+    url: '/tweets',
+    data : text.serialize(),
+  }).then(loadTweets);
+  
+});
+
+
+//----------------------------- post new Tweets into old tweet thread, GET method, Ajax  ------------------------------//
+function loadTweets() {
+  $.ajax({
+    method: 'GET',
+    url: '/tweets',
+  }).then(function(tweets) {
+    renderTweets(tweets);
+  })
+};
+
+
+//------------------------------------------------- Compose Button ----------------------------------------------------//
+$('.compose').on('click', function(event) {
+  $('.new-tweet').slideToggle(function() {
+    $('#text').focus();
+  });
+});
+
+
+//--------------------------------------- Template Database of Users(DUMMY DATA) --------------------------------------//
 var data = [
   {
     "user": {
@@ -47,106 +147,6 @@ var data = [
     "created_at": 1461113796368
   }
 ];
-
-
-//--------------------------- Create tweet element/object and prep for render ---------------------------------//
-function createTweetElement(tweet) {
-  // console.log(tweet);
-  let $avatar = $("<img/>", { src: tweet.user.avatars.small }).addClass("avatars");
-  let $name = $('<span/>', { text: tweet.user.name }).addClass("fullName");
-  let $handle = $('<handle>').text(tweet.user.handle).addClass("handle"); //this format also works.
-
-  let $flag = $('<i/>').addClass('fa fa-flag');
-  let $retweet = $('<i>').addClass('fa fa-retweet'); // <i> or <i/>
-  let $heart = $('<i/>').addClass('fa fa-heart');
-
-
-  let $content = $('<p/>', { text: tweet.content.text }).addClass("content");
-
-  let $age = $('<span/>', { text: tweet.created_at }).addClass("age");
-  let $header = $('<header/>')
-
-  let $footer = $('<footer/>')
-
-  let $icons = $('<div/>').addClass("icons");
-
-  let $article = $('<article/>').addClass('content-article');
-
-  let $section = $('<section/>');
-
-  $header.append($avatar, $name, $handle);
-  $icons.append($flag, $retweet, $heart);
-  $footer.append($age, $icons);
-  $article.append($header, $content, $footer);
-  // $section.append($article);
-    return $article;
-  // return $section;
-  // console.log($section);
-}
-
-
-//--------------------------- Render Tweets ---------------------------------//
-function renderTweets(tweets) {
-  for (let pastTweet of tweets) {
-    $('#old-tweets').prepend(createTweetElement(pastTweet));
-  }
-}
-renderTweets(data);
-
-
-//----------------------------------- Submit new tweet, POST method, Ajax ------------------------------------------//
-$('.new-tweet form').on('submit', function(event) {
-  event.preventDefault();
-  console.log('tweet button clicked, preventing default');
-  let text = $('.new-tweet textarea'); // $(this).find('[name=text]').val(); --- using this.
-  let tweetText = $(this).find('[name=text]').val();
-  // let tweetWords = $('.new-tweet textarea');
-  console.log("text is:", text);
-
-  if (tweetText === '') {
-    $('.too-short').slideDown(function() {
-    setTimeout(function() {
-      $('.too-short').slideUp();
-      }, 5000);
-    });
-    return;
-  }
-
-  if (tweetText.length > 140) {
-    $('.too-long').slideDown(function() {
-    setTimeout(function() {
-      $('.too-long').slideUp();
-      }, 5000);
-    });
-    return;
-  }
-
-  $.ajax({
-    method: 'POST',
-    url: '/tweets',
-    data : text.serialize(),
-  }).then(loadTweets);
-  
-});
-
-
-//------------------------ post new Tweets into old tweet thread, GET method, Ajax  ---------------------------------//
-function loadTweets() {
-  $.ajax({
-    method: 'GET',
-    url: '/tweets',
-  }).then(function(tweets) {
-    renderTweets(tweets);
-  })
-};
-
-
-//----------------------------- Compose Button -------------------------------//
-$('.compose').on('click', function(event) {
-  $('.new-tweet').slideToggle(function() {
-    $('#text').focus();
-  });
-});
 
 
 //------------------------------------------------------- Close -------------------------------------------------------------------//
