@@ -7,25 +7,24 @@
 }
 
 #old-tweets header {
-    font-size: 18px;
-    margin: 0;
+    font-size: 1em;
     background-color: lightgray;
     padding: .5em;
 }
 
 #old-tweets header .avatars {
-    width: 30px;
-    height: 30px;
+    width: 7%;
+    height: 7%;
     float: left;
-    padding: 0px 4px 6px 0px;
+    padding: 0em .2em 1em 0em;
 }
 
 #old-tweets header .fullName {
-    font-size: 18px;
+    font-size: 1em;
 }
 
 #old-tweets header .handle {
-    font-size: 14px;
+    font-size: .8em;
     float: right;
     padding-top: .1em;
 }
@@ -33,32 +32,36 @@
 #old-tweets .content-article {
     opacity: .5;
     margin-top: 1em;
-    border-radius: 10px;
-    border: 2px solid rgba(128, 128, 128, .3);
+    border-radius: 1em;
+    border: .3em solid rgba(128, 128, 128, .3);
 }
 
 #old-tweets .content-article:hover {
-    border: 2px solid rgba(128, 128, 128, 1);
+    border: .3em solid rgba(128, 128, 128, 1);
+    border-radius: 1em;
     opacity: 1;
 }
 
+#old-tweets .content-article:hover header {
+    border-radius: .5em;
+}
 
 #old-tweets .content {
     padding: .5em;
 }
 
 #old-tweets footer {
-    border-top: 1px solid rgba(128, 128, 128, .3);
+    border-top: .15em solid rgba(128, 128, 128, .3);
 }
 
 #old-tweets footer .age {
-    font-size: 12px;
+    font-size: .7em;
     padding: 1em 0em 0em .6em;
 }
 
 #old-tweets footer .icons {
     z-index: 1;
-    font-size: 12px;
+    font-size: .7em;
     padding: .25em .6em 0em .6em;
     opacity: .0;
     float: right;
