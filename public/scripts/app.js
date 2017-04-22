@@ -92,13 +92,18 @@ function loadTweets() {
 };
 
 
-//------------------------------------------------- Compose Button ----------------------------------------------------//
+//-------------------------------------- Compose Button Event Handler --------------------------------------------------//
 $('.compose').on('click', function(event) {
   $('.new-tweet').slideToggle(function() {
     $('#text').focus();
   });
 });
 
+$('.dual-compose').on('click', function(event) {
+  $('.new-tweet').slideToggle(function() {
+    $('#text').focus();
+  });
+});
 
 //--------------------------------------- Template Database of Users(DUMMY DATA) --------------------------------------//
 var data = [
