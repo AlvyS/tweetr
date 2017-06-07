@@ -1,49 +1,42 @@
-/*Full Box*/
 .container .new-tweet {
-    background: lightgray;
-    border-radius: 1em;
-    border: 2px solid gray;
-    padding: .8em 1.5em .8em 1.5em;
-    margin: 0 2em 0 2em; 
-    display: none;
+	background: lightgray;
+	border-radius: 1em;
+	border: 2px solid gray;
+	padding: .8em 1.5em .8em 1.5em;
+	margin: 0 2em 0 2em; 
+	display: none;
 }
 
-/*"Compose Tweet"*/
 h2 {
-    font-size: 1.5em;
-    margin-top: 0em;
-    align-content: center;
-    border-bottom: 1px solid gray;
-    padding: .1em;
+	font-size: 1.5em;
+	margin-top: 0em;
+	align-content: center;
+	border-bottom: 1px solid gray;
+	padding: .1em;
 }
 
-/*Text Box*/
 textarea {
-    font-size: 1em;
-    padding: .2em;
-    width: 100%;
+	font-size: 1em;
+	padding: .2em;
+	width: 100%;
 }
 
-/*# Counter*/
 .counter {
-    font-size: 1em;
-    padding-top: 4px;
-    float: right;
+	font-size: 1em;
+	padding-top: 4px;
+	float: right;
 }
 
-/*Tweet Button*/
 input {
-    float: bottom left;
+	float: bottom left;
 }
 
-/*too short pulldown*/
 .new-tweet .too-short {
-    font-size: .7em;
-    display: none;
+	font-size: .7em;
+	display: none;
 }
 
-/*too long pulldown*/
 .new-tweet .too-long {
-    font-size: .7em;
-    display: none;
+	font-size: .7em;
+	display: none;
 }

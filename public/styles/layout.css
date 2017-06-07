@@ -1,8 +1,9 @@
 /*
- * http://www.paulirish.com/2012/box-sizing-border-box-ftw/
- * https://css-tricks.com/international-box-sizing-awareness-day/
- * Do not modify these two selectors, please
- */
+  * http://www.paulirish.com/2012/box-sizing-border-box-ftw/
+  * https://css-tricks.com/international-box-sizing-awareness-day/
+  * Do not modify these two selectors, please
+*/
+
 html {
   box-sizing: border-box;
   font: 'Roboto Condensed', sans-serif;
@@ -34,9 +35,7 @@ html {
   padding: 80px
 }
 
-/*
- * Global layout stuff
- */
+/* Global layout stuff */
 
 body {
   margin: 0;
@@ -44,6 +43,4 @@ body {
   background-color: #eee;
 }
 
-/*
- * Additional CSS can be defined below or in other CSS files, as per instructions
- */
+/* Additional CSS can be defined below or in other CSS files, as per instructions */
